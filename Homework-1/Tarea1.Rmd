@@ -1,0 +1,15 @@
+Matriz "pesoPersonas" con numeros aleatorios entre 160 - 200
+
+```{r}
+pesoPersonas <- matrix(round(runif(n=25, min=160, max=200), 0), nrow=5)
+meses <- c("enero","febrero","marzo","abril","mayo")
+colnames(pesoPersonas) <- meses
+personas <- c("Jose","Fernando","Sergio","Luis","Juan")
+rownames(pesoPersonas) <- personas
+promedioPesosPersonas <- rowMeans(pesoPersonas)
+promedioPesosMeses <- colMeans(pesoPersonas)
+pesoPersonasV2 <- cbind(pesoPersonas,promedioPesosPersonas)
+pesoPersonasV3 <- rbind(pesoPersonasV2,promedioPesosMeses)
+print(pesoPersonasV3)
+```
+
