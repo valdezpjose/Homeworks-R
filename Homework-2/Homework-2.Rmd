@@ -1,0 +1,63 @@
+Funciones en R
+
+Estructura de una funcion:
+
+Las partes de una función son:
+
+Entradas o argumentos: sirven para ingresar información necesaria para realizar el procedimiento de la función. Los argumentos pueden estar vacíos y a la espera de que el usuario ingrese valores, o pueden tener valores por defecto, esto significa que si el usuario no ingresa un valor, la función usará el valor por defecto. Una función puede tener o no argumentos de entrada, en los ejemplos se mostrarán estos casos.
+
+Cuerpo: está formado por un conjunto de instrucciones que transforman las entradas en las salidas deseadas. Si el cuerpo de la función está formado por varias instrucciones éstas deben ir entre llaves { }.
+
+Salidas: son los resultados de la función. Toda función debe tener al menos un resultado. Si una función entrega varios tipos de objetos se acostumbra a organizarlos en una lista que puede manejar los diferentes tipos de objetos.
+
+nombre_de_funcion <- function(par1, par2, ...) {
+  cuerpo
+  cuerpo
+  cuerpo
+  cuerpo
+  return(resultado)
+}
+
+
+Ejemplo de una funcion:
+
+```{r}
+suma <- function(x, y) {
+  return(x + y)
+}
+
+suma(x=4, y=6)  # Probando la función
+```
+
+
+Familia apply 
+
+lapply:
+lapply() es un caso especial de apply(), diseñado para aplicar funciones a todos los elementos de una lista. La l de su nombre se refiere, precisamente, a lista.
+
+lapply() intentará coercionar a una lista el objeto que demos como argumento y después aplicará una función a todos sus elementos.
+
+Ejemplo:
+```{r}
+trees[1:5, ]
+lapply(X = trees, FUN = mean)
+
+```
+
+sapply:
+La función sapply en R aplica una función a un vector o lista y devuelve un vector, una matriz o un array. 
+
+Ejemplo:
+```{r}
+sapply(1:4, sqrt)
+```
+vapply:
+Devuelve un vector con la longitud que tiene cada una de las listas introducidas como parámetro.
+
+Ejemplo:
+```{r}
+x <- list(A = 1, B = 1:3, C = 1:7)
+vapply(x, FUN = length, FUN.VALUE = 0L)
+```
+
+
