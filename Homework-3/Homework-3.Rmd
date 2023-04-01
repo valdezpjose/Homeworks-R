@@ -1,0 +1,27 @@
+```{r}
+dataset_results = read.csv('C:/Users/valde/Documents/primary_results.csv')
+```
+
+```{r}
+library(dplyr)
+
+florida_results <- dplyr::filter(dataset_results, state=='Florida')
+```
+```{r}
+dplyr::filter(dataset_results, candidate=='Hillary Clinton' | candidate=='Donald Trump')
+```
+```{r}
+dplyr::filter(dataset_results, party=='Democrat' & county=='Shelby')
+```
+
+```{r}
+dplyr::filter(dataset_results, state=='Alabama' & votes>15000)
+```
+```{r}
+select_df <-  select(filter(dataset_results, state == 'Texas' & county == 'Denton'), party, candidate, votes)
+arrange(select_df,desc(votes))
+```
+```{r}
+
+```
+
