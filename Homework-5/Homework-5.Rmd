@@ -1,0 +1,52 @@
+```{r}
+questions <- read.csv("questions.csv")
+answers <- read.csv("answers.csv")
+tags <- read.csv("tags.csv")
+question_tags <- read.csv("question_tags.csv")
+```
+
+1.1 , 1.2, 1.3, 1.4
+
+```{r}
+library(dplyr)
+questions_with_tags <- left_join(questions, question_tags, by = c("id" = "question_id"))
+
+questions_with_tags <- left_join(questions_with_tags, tags, by = c("tag_id" = "id"))
+
+questions_with_tags <- replace_na(questions_with_tags, list(tag_name = "only-r"))
+```
+
+2.1, 2.2, 2.3
+
+```{r}
+questions_with_tags %>%
+  group_by(tag_name) %>%
+  summarize(mean_score = mean(score)) %>%
+  arrange(desc(mean_score))
+```
+
+
+3.1,3.2
+```{r}
+question_answer <- inner_join(questions, answers, by = c("id" = "question_id"), suffix = c("_question", "_answer")) %>%
+  mutate(gap = difftime(creation_date_answer, creation_date_question, units = "days"))
+```
+
+4.1,4.2,4.3,4.4
+```{r}
+answer_counts <- answers %>%
+  count(question_id) %>%
+  arrange(desc(n))
+
+question_answer_counts <- left_join(questions, answer_counts, by = c("id" = "question_id"))
+
+
+question_answer_counts$n[is.na(question_answer_counts$n)] <- 0
+
+```
+
+5.1,5.5
+```{r}
+question_answer_tags <- inner_join(question_answer_counts, question_tags, by = c("id" = "question_id")) %>%
+  inner_join(question_answer_tags, tags, by = c("tag_id" = "id"), suffix = c("_qatags", "_tags"))
+```
